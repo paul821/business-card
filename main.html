@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Card - Chanyeol Paul Kim</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card-container {
+            perspective: 1000px;
+            width: 380px;
+            height: 240px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .front {
+            background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+            color: white;
+        }
+
+        .back {
+            background: linear-gradient(135deg, #2d3561 0%, #c850c0 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            opacity: 0.9;
+        }
+
+        .university {
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.8;
+            flex-shrink: 0;
+        }
+
+        .contact-text {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .contact-text:hover {
+            opacity: 0.8;
+        }
+
+        .flip-hint {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 12px;
+            opacity: 0.6;
+            font-weight: 300;
+        }
+
+        .back-content {
+            text-align: center;
+        }
+
+        .qr-placeholder {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-link {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: background 0.2s;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 480px) {
+            .card-container {
+                width: 320px;
+                height: 200px;
+            }
+            
+            .card-face {
+                padding: 24px;
+            }
+            
+            .name {
+                font-size: 24px;
+            }
+            
+            .title {
+                font-size: 14px;
+            }
+            
+            .university {
+                font-size: 12px;
+            }
+            
+            .contact-item {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container" onclick="flipCard()">
+        <div class="card" id="businessCard">
+            <!-- Front Side -->
+            <div class="card-face front">
+                <div class="name">Chanyeol Paul Kim</div>
+                <div class="title">Research Assistant</div>
+                <div class="university">Northwestern University</div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <a href="mailto:paulkim2024@u.northwestern.edu" class="contact-text">paulkim2024@u.northwestern.edu</a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                        <a href="tel:+2242855247" class="contact-text">+1 (224) 285-5247</a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        <span class="contact-text">Chicago, IL</span>
+                    </div>
+                </div>
+                
+                <div class="flip-hint">Click to flip →</div>
+            </div>
+            
+            <!-- Back Side -->
+            <div class="card-face back">
+                <div class="back-content">
+                    <div class="university" style="margin-bottom: 10px; font-size: 16px; opacity: 1;">IE / Econ / Kellogg CPU</div>
+                    <div class="university" style="margin-bottom: 15px;">Northwestern University '26</div>
+                    
+                    <div class="tagline" style="font-size: 14px; font-style: italic; margin-bottom: 30px; opacity: 0.9; line-height: 1.4;">
+                        "Blending data and strategy to solve real-world problems."
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/paul821" class="social-link" target="_blank">LinkedIn</a>
+                        <a href="https://paul821.github.io" class="social-link" target="_blank">Website</a>
+                    </div>
+                </div>
+                
+                <div class="flip-hint">Click to flip ←</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isFlipped = false;
+
+        function flipCard() {
+            const card = document.getElementById('businessCard');
+            isFlipped = !isFlipped;
+            
+            if (isFlipped) {
+                card.classList.add('flipped');
+            } else {
+                card.classList.remove('flipped');
+            }
+        }
+
+        // Add touch support for mobile
+        document.addEventListener('touchstart', function() {}, {passive: true});
+    </script>
+</body>
+</html>
